@@ -1,0 +1,62 @@
+---------
+Introduction
+--------
+
+ Overriding occurs in the context of inheritance, where a subclass inherits
+  methods and properties from its superclass.
+
+The Parent class method which is overridden is called overridden method.
+The Child class method which is overriding is called overriding method.
+
+
+In overriding method resolution is always takes care by JVM based on runtime
+object hence overriding is also considered as runtime polymorphism .
+
+The process of overriding method resolution is also known as dynamic method
+dispatch.
+------------
+Rules for overriding :
+-------------
+1. In overriding method names and arguments must be same. That is method
+signature must be same.
+2.According to this Child class method return type need not be same as Parent
+class method return type its Child types also allowed.
+
+
+Note:Private methods are not visible in the Child classes hence overriding concept
+is not applicable for private methods.
+
+Note: Parent class final methods we can't override in the Child class. whereas
+Parent class non final methods we can override as final in child class. We can
+override native methods in the child classes.
+
+-->We should override Parent class abstract methods in Child classes to provide
+implementation.
+
+We can override a non-abstract method as abstract
+this approach is helpful to stop availability of Parent method implementation to
+the next level child classes.
+
+Example:
+ abstract class Parent {
+ public abstract void methodOne();
+ }
+ class Child extends Parent {
+ public void methodOne() { }
+ }
+
+NOTE: Synchronized, strictfp, modifiers won't keep any restrictions on overriding.
+
+@Override Annotation:
+    It's a good practice to use the @Override annotation before the overridden
+    method to ensure you are correctly overriding a method from the superclass.
+    This annotation helps catch errors at compile time.
+
+NOTE: While overriding we can't reduce the scope of access modifier.
+ Example:
+ class Parent {
+ public void methodOne() { }
+ }
+ class Child extends Parent {
+ protected void methodOne( ) { }
+ }

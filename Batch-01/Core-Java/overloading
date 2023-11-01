@@ -1,0 +1,10 @@
+Method Overloading in JAVA - If a class has multiple methods having same name but
+   different in parameters, it is known as Method Overloading.
+   for example -
+  	public String addti1on(int a,int b, int c) {
+  		return null;
+
+  	}
+  	public String addtion(int a,int b, int d) {
+  	return null;
+  	}

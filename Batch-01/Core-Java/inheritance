@@ -1,0 +1,64 @@
+======================
+Inheritance in Java
+======================
+
+1)Class: A class is a group of objects which have common properties. It is a template
+or blueprint from which objects are created.
+
+2)Sub Class/Child Class: Subclass is a class which inherits the other class.
+ It is also called a derived class, extended class, or child class.
+
+3)Super Class/Parent Class: Superclass is the class from where a subclass inherits
+ the features. It is also called a base class or a parent class.
+
+4)Reusability: As the name specifies, reusability is a mechanism which facilitates
+ you to reuse the fields and methods of the existing class when you create a new class.
+  You can use the same fields and methods already defined in the previous class.
+
+NOTE:ek class sirf ek class ko extend kr skte aur multiple class ko implement kr
+skte hn.
+
+NOTE:ek contract ke multiple implementation ho skta  hain. Par ek class ke Multiple
+extend nahi ho skta.
+
+*******************************
+The syntax of Java Inheritance
+*******************************
+
+      class Subclass-name extends Superclass-name
+      {
+         //methods and fields
+      }
+
+Note: Multiple inheritance is not supported in Java through class.
+
+# On the basis of class, there can be three types of inheritance in java: single,
+ multilevel and hierarchical.
+
+********* Single Inheritance Example***************
+
+When  When a class inherits another class, it is known as a single inheritance.
+a class inherits another class, it is known as a single inheritance.
+In the example given below, Dog class inherits the Animal class,
+so there is the single inheritance.
+
+######################################################
+SYNTEXT-
+class Animal{
+void eat(){System.out.println("eating...");}
+}
+class Dog extends Animal{
+void bark(){System.out.println("barking...");}
+}
+
+**************Hierarchical Inheritance Example************
+
+When two or more classes inherits a single class, it is known as hierarchical inheritance.
+In the example given below, Dog and Cat classes inherits the Animal class, so there is
+hierarchical inheritance.
+
+*************Multilevel Inheritance Example***********
+
+When there is a chain of inheritance, it is known as multilevel inheritance.
+As you can see in the example given below, BabyDog class inherits the Dog class
+which again inherits the Animal class, so there is a multilevel inheritance.

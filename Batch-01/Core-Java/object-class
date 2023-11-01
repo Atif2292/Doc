@@ -1,0 +1,145 @@
+-------------
+Introduction
+-------------
+As object class acts as a root (or) parent (or) super for all java classes,
+by default its methods are available to every java class.
+
+Note : If our class doesn't extends any other class then it is the direct child class
+of object and If our class extends any other class then it is the indirect child
+class of Object.
+
+OBJECT - ObJECT sabhi classes ke default parent class hoti han ya Superclass,
+Isko hame dalna nahi padhta kuch libray JAVA mein pre defined aa jati hain vaisehe
+jab ham koi class banta hain tu apna app uske ek superclass ban jate hn OBJECT
+jo show nahi hoti.
+
+---
+Methods in Object Class
+---
+
+The following is the list of all methods present in java.lang Object class:
+
+1. public String toString();
+2. public native int hashCode();
+3. public boolean equals(Object o);
+4. protected native Object clone()throws CloneNotSupportedException;
+5. public final Class getClass();
+6. protected void finalize()throws Throwable;
+7. public final void wait() throws InterruptedException;
+8. public final native void wait()throws InterruptedException;
+9. public final void wait(long ms,int ns)throws InterruptedException;
+10. public final native void notify();
+11. public final native void notifyAll();
+
+------
+toString( ) method :
+------
+We can use this method to get string representation of an object.
+
+If our class doesn't contain toString() method then Object class toString()
+method will be executed.
+
+Example :{
+ Student s1=new Student("saicharan",101);
+ System.out.println(s1);
+ System.out.println(s1.toString());
+ }
+ Output:
+ Student@3e25a5
+ Student@3e25a5
+
+ Note:To provide our own String representation we have to override toString() method
+in our class.
+
+---
+hashCode() method :
+---
+For every object jvm will generate a unique number which is nothing but
+hashCode.
+
+Overriding hashCode() method is said to be proper if and only if for every object
+we have to generate a unique number as hashcode for every object.
+
+
+Note:We can use toString() method while printing object references and we can use
+hashCode() method while saving objects into HashSet or Hashtable or HashMap.
+
+---
+equals() method:
+---
+If our class doesn't contain .equals() method then object class .equals() method
+will be executed which is always meant for reference comparison[address
+comparison]. i.e., if two references pointing to the same object then only .equals(
+) method returns true .
+
+It is a method applicable only for object references but not for primitives.
+
+***
+Important Points
+***
+== (double equal operator)
+It is an operator applicable for both primitives and object references.
+
+If 2 objects are not equal by .equals() method then there are no restrictions on
+hashCode() methods. They may be same (or) may be different. That is If
+r1.equals(r2) is false then r1.hashCode()==r2.hashCode() may be same (or) may
+be different.
+
+In all wrapper classes, in string class, in all collection classes .equals() method is
+overridden for content comparison in our classes also it is highly recommended to
+override .equals() method.
+
+---
+Clone () method:
+---
+The process of creating exactly duplicate object is called cloning.
+
+ We can perform cloning only for Cloneable objects.
+ An object is said to be Cloneable if and only if the corresponding class
+implements Cloneable interface.
+ Cloneable interface present in java.lang package and does not contain any
+methods. It is a marker interface(empty interface) where the required ability
+will be provided automatically by the JVM.
+
+---
+Shallow cloning:
+---
+If the main object contain any primitive variables then exactly duplicate copies
+will be created in cloned object.
+
+In Shallow cloning by using main object reference , if we perform any change to
+the contained object then those changes will be reflected automatically in cloned
+copy.
+
+---
+Deep cloning:
+---
+The process of creating exactly independent duplicate object(including contained
+objects also) is called deep cloning.
+
+In Deep cloning by using main Object reference if we perform any change to the
+contained Object those changes won't be reflected to the cloned object.
+
+---
+getClass() method :
+---
+This method returns runtime class definition of an object.
+
+Example:
+public static void main(String[] args) {
+		Object o = new String("ashok");
+		System.out.println("Runtime object type of o is:" + o.getClass().getName());
+	}
+Output:
+Runtime object type of o is: java.lang. String
+
+---
+wait( ) , notify( ) , notifyAll( )
+---
+We can use these methods for inter thread communication
+
+---
+finalize( ) :
+---
+Just before destroying an object GC calls finalize( ) method to perform CleanUp
+activities .

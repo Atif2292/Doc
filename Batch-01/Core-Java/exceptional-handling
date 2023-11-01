@@ -1,0 +1,211 @@
+ **************************
+TOPIC - exceptionalHAndling
+***************************
+
+Introduction
+
+Exception: An unwanted unexpected event that disturbs normal flow of the program is
+called exception.
+
+NOTE:
+JVM identifies the caller method and checks whether the caller method contain
+any handling code or not. If the caller method also does not contain handling
+code then JVM terminates that caller method also abnormally and removes
+corresponding entry from the stack.
+This process will be continued until main() method and if the main() method also
+doesn't contain any exception handling code then JVM terminates main()
+method also and removes corresponding entry from the stack.
+
+NOTE:
+Throwable se exceptionalHAndling start hoti hain.
+(Throwable ke andr exceptionalHAndling ati hain).
+Throwable ek class hain.
+
+NOTE:
+RuntimeException and its child classes, Error and its child classes are unchecked
+exceptions.(mtlb compile ho jayga wo isko check nahi krega ,compile hone ke bad
+exception show hoga)
+
+Note:
+The java.lang.Throwable class is the root class of Java Exception hierarchy
+inherited by two subclasses: Exception and Error
+
+Some Exception Types -
+
+1. RuntimeException-----unchecked
+2. Error-----unchecked
+3. IOException-----fully checked
+4. Exception-----partially checked
+5. InterruptedException-----fully checked
+6. Throwable------partially checked
+7. ArithmeticException ----- unchecked
+8. NullPointerException ------ unchecked
+9. FileNotFoundException ----- fully checked
+10.Custom Exception
+11.noclassDefFound exception and classnotfound exception
+12.IllegalArgument exception
+13.StackOverflow and memoryOutOfBound
+
+==
+SOME IMP EXCEPTION -
+==
+
+NoClassDefFoundError:
+It is the child class of Error and hence it is unchecked. JVM will raise this error
+automatically whenever it is unable to find required .class file. Example: java
+Test If Test.class is not available. Then we will get NoClassDefFound error.
+
+IllegalArgumentException:
+It is the child class of RuntimeException and hence it is unchecked. Raised
+explicitly by the programmer (or) by the API developer to indicate that a method
+has been invoked with inappropriate argument.
+Example:
+class Test{
+
+public static void main(String[] args){
+Thread t=new Thread();
+t.setPriority(10);//valid
+t.setPriority(100);//invalid
+}}
+
+ExceptionInInitializerError:
+It is the child class of Error and it is unchecked. Raised automatically by the
+JVM, if any exception occurs while performing static variable initialization and
+static block execution.
+
+IllegalStateException:
+It is the child class of RuntimeException and hence it is unchecked. Raised
+explicitly by the programmer or by the API developer to indicate that a method
+has been invoked at inappropriate time.
+Example:
+Once session expires we can't call any method on the session object otherwise we
+will get IllegalStateException
+HttpSession session=req.getSession();
+System.out.println(session.getId());
+session.invalidate();
+System.out.println(session.getId());
+
+
+---
+Customized Exception Handling by using try-catch:
+---
+Example:
+try
+{
+Risky code
+}
+catch(Exception e)
+{
+Handling code
+}
+
+---
+Various methods to print exception information:
+--
+
+printStackTrace():
+This method prints exception information in the following format -
+Name of the exception: description of exception
+Stack trace
+
+toString(): This method prints exception information in the following format-
+Name of the exception: description of exception
+
+getMessage(): This method returns only description of the exception -Description.
+
+return Vs finally:
+Even though return statement present in try or catch blocks first finally will be executed
+and after that only return statement will be considered. i.efinally block dominates
+return statement.
+Example:
+class Test
+{
+public static void main(String[] args)
+{
+try
+{
+System.out.println("try block executed");
+return;
+}
+catch(ArithmeticException e)
+{
+System.out.println("catch block executed");
+}
+finally
+{
+System.out.println("finally block executed");
+}
+}}
+Output:
+try block executed
+Finally block executed
+
+NOTE:
+If return statement present try, catch and finally blocks then finally block return
+statement will be considered.
+Example:
+class Test
+{
+public static void main(String[] args)
+{
+System.out.println(m1());
+}
+public static intm1(){
+try
+{
+System.out.println(10/0);
+return 777;
+}
+catch(ArithmeticException e)
+{
+return 888;
+}
+finally{
+return 999;
+}
+}}
+Output:
+999
+
+NOTE:
+When ever we are using System.exit(0) then JVM itself will be shutdown , in this case
+finally block won't be executed.
+
+-------------------------
+Java Exception Keywords
+-------------------------
+
+1)finally keyword - iska kam hota hain ke yh chalta hain chahe exceptions kyu n aye
+try catch n kkre ya kre dono case mein finally chalega.
+The speciality of finally block is it will be executed always irrespective of
+whether the exception raised or not raised and whether handled or not handled.
+
+2)final:
+ final is the modifier applicable for classes, methods and variables.
+ If a class declared as the final then child class creation is not possible.
+ If a method declared as the final then overriding of that method is not possible.
+ If a variable declared as the final then reassignment is not possible.
+
+3)finalize:
+ finalize is a method, always invoked by Garbage Collector just before destroying
+an object to perform cleanup activities.
+
+4)throw keyword - Sometimes we can create Exception object explicitly and we can hand
+over to the JVM manually by using throw KEYWORD.
+
+5)Throws statement:
+In our program if there is any chance of raising checked exception then compulsory we
+should handle either by try catch or by throws keyword otherwise the code won't
+compile.
+
+NOTE:
+we can use throws keyword only for Throwable types otherwise we will get compile time
+error saying incompatible types.
+
+===
+1.7 Version Enhansements :
+===
+As part of 1.7 version enhancements in Exception Handling the following 2 concepts
+introduced
+1. try with resources
+2. multi catch block

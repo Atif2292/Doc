@@ -1,0 +1,294 @@
+
+==================
+COLLECTION IN JAVA
+==================
+
+Collection ek Interface class hain.
+
+1.If we want to represent a group of "individual objects" as a single entity then we
+should go for collection.
+2. In general we can consider collection as root interface of entire collection
+framework.
+3. Collection interface defines the most common methods which can be applicable
+for any collection object.
+4. There is no concrete class which implements Collection interface directly.
+5.The Collection in Java is a framework that provides an architecture to store and
+manipulate the group of objects.
+
+------------------------------
+What is Collection framework
+------------------------------
+
+The Collection framework represents a unified architecture for storing and
+ manipulating a group of objects. It has:
+
+1)Interfaces and its implementations, i.e., classes
+2)Algorithm
+
+NOTE:It is basically a container jo OBJECTS rkna ke lia banaya gaya hain.
+
+---------
+List:
+----------
+
+1. It is the child interface of Collection.
+2. If we want to represent a group of individual objects as a single entity where
+"duplicates are allow and insertion order must be preserved" then we should go
+for List interface.
+
+-----------
+ArrayList:
+------------
+
+1. The underlying data structure is resizable array (or) growable array.
+2. Duplicate objects are allowed.
+3. Insertion order preserved.
+4. Heterogeneous objects are allowed.(except TreeSet , TreeM ap every where
+heterogenious objects are allowed)
+5. Null insertion is possible.
+
+
+ Collections class defines the following method to return synchronized version
+of List.
+
+List l1=Collections.synchronizedList(a);
+here l1 is synchronized and,
+a is non-synchronized.
+
+ Similarly we can get synchronized version of Set and M ap objects by using the
+following methods.
+
+1) public static Set synchronizedSet(Set s);
+2) public static Map synchronizedM ap(Map m);
+3)ArrayList is the best choice if our frequent operation is retrieval.
+4)ArrayList is the worst choice if our frequent operation is insertion (or)deletion
+in the middle because it requires several internal shift operations.
+********
+NOTE:Synchronization in java is the capability to control the access of multiple
+threads to any shared resource.
+********
+---------
+KEYWORDS
+---------
+variable.add(output);
+variable.remove(output no. to remove);
+variable.clear(); to clear All.
+for eg-
+	  a.add("name");
+		a.add(1);
+		System.out.println(a);//[name,1]
+		a.remove(1);
+		System.out.println(a);//[name]
+		a.add(10);
+		System.out.println(a);//[name,10]
+		a.clear();
+		System.out.println(a);//[]
+
+---------
+LINKLIST
+---------
+
+1. The underlying data structure is double LinkedList
+2. If our frequent operation is insertion (or) deletion in the middle then
+LinkedList is the best choice.
+3. If our frequent operation is retrieval operation then LinkedList is worst choice.
+4. Duplicate objects are allowed.
+5. Insertion order is preserved.
+6. Heterogeneous objects are allowed.
+7. Null insertion is possible.
+8. Implements Serializable and Cloneable interfaces but not RandomAccess.
+i)Cloneable: interface in Java is a marker interface that is used to indicate
+ that a class can be cloned.
+ii)To serialize an object means to convert its state to a byte stream so that the
+byte stream can be reverted back into a copy of the object.
+Explaination:basically yh hame recreate krne dete hain as a new object aur purane
+object ko bacha kr rkte hain.
+************************************
+To provide support for this requirement LinkedList class defines the following 6
+specific methods.
+1. void addFirst(Object o);
+2. void addLast(Object o);
+3. Object getFirst();
+4. Object getLast();
+5. Object removeFirst();
+6. Object removeLast();
+
+NOTE:We can apply these methods only on LinkedList object.
+
+SYNTEXT-
+public class LinkListDemo {
+
+	public static void main(String[] args) {
+		LinkedList a = new LinkedList();
+
+		a.add(10);
+		a.add("ashok");
+		System.out.println(a);// [10,ashok]
+		a.set(0, "software");
+		System.out.println(a);// [software,ashok ]
+
+		a.addLast("venky");
+		System.out.println(a);// [software,ashok, venky]
+		a.removeLast();
+		System.out.println(a);// [software , ashok ]
+		a.addFirst("vvv");
+		System.out.println(a);// [vvv,software,ashok]
+		a.removeFirst();
+		System.out.println(a);// [software,ashok]
+		a.getFirst();
+		System.out.println(a);// [software,ashok]
+
+		a.getLast();
+		System.out.println(a);// [software,ashok]
+
+	}
+}
+NOTE:getFirst(): This method returns the first element in the LinkedList.
+If the LinkedList is empty, a NoSuchElementException is thrown. getLast():
+This method returns the last element in the LinkedList. If the LinkedList is
+empty, a NoSuchElementException is thrown.
+
+----------
+Set:
+----------
+
+1. It is the child interface of Collection.
+2. If we want to represent a group of individual objects as single entity "where
+duplicates are not allow and insertion order is not preserved" then we should go
+for Set interface.
+
+---------
+HASHSET
+---------
+
+1. The underlying data structure is Hashtable.
+2. Insertion order is not preserved and it is based on hash code of the objects.
+3. Duplicate objects are not allowed.
+4. If we are trying to insert duplicate objects we won't get compile time error and
+runtime error add() method simply returns false.
+5. Heterogeneous objects are allowed.
+6. Null insertion is possible.(only once)
+7. Implements Serializable and Cloneable interfaces but not RandomAccess.
+8. HashSet is best suitable, if our frequent operation is "Search".
+
+SYntext
+public static void main(String[] args)
+  {
+    HashSet h=new HashSet();
+    h.add("B");
+    h.add("C");
+    h.add("D");
+    h.add("Z");
+    h.add(null);
+    h.add(10);
+    System.out.println(h.add("Z"));//false
+    System.out.println(h);//[null, D, B, C, 10, Z]
+    }
+
+---------
+TreeSet
+---------
+NOTE: Null insertion is possible(only once).
+
+1. The underlying data structure is balanced tree.
+2. Duplicate objects are not allowed.
+3. Insertion order is not preserved and it is based on some sorting order of objects.
+4. Heterogeneous objects are not allowed if we are trying to insert heterogeneous
+objects then we will get ClassCastException.
+
+
+Example 1:
+import java.util.*;
+class TreeSetDemo
+{
+  public static void main(String[] args)
+  {
+    TreeSet t=new TreeSet();
+    t.add("A");
+    t.add("a");
+    t.add("B");
+    t.add("Z");
+    t.add("L");
+    //t.add(new Integer(10));//ClassCastException
+    //t.add(null);//NullPointerException
+    System.out.println(t);//[A, B, L, Z, a]
+    }
+}
+Null acceptance:
+ For the empty TreeSet as the 1st element "null" insertion is possible but after
+inserting that null if we are trying to insert any other we will get
+NullPointerException.
+ For the non empty TreeSet if we are trying to insert null then we will get
+NullPointerException.
+
+-------
+Map:
+-------
+
+1. Map is not child interface of Collection.
+2. If we want to represent a group of objects as key-value pairs then we should go for
+Map interface.
+3. Duplicate keys are not allowed but values can be duplicated.
+
+-------
+HashMap
+-------
+
+1. The underlying data structure is Hashtable.
+2. Duplicate keys are not allowed but values can be duplicated.
+3. Insertion order is not preserved and it is based on hash code of the keys.
+4. Heterogeneous objects are allowed for both key and value.
+5. Null is allowed for keys(only once) and for values(any number of times).
+6. It is best suitable for Search operations.
+
+SYNTEXT-
+public static void main(String[] args)
+{
+  HashMap m=new HashMap();
+  m.put(null, 0);//This will not print in console.
+  m.put( null,700);
+  m.put("balaiah",800);
+  m.put("venkatesh",200);
+  m.put("nagarjuna",500);
+  System.out.println(m);
+
+}
+
+--------
+TreeMap:
+--------
+
+1. The underlying data structure is RED-BLACK Tree.
+2. Duplicate keys are not allowed but values can be duplicated.
+3. Insertion order is not preserved and all entries will be inserted according to some
+sorting order of keys.
+4. If we are depending on default natural sorting order keys should be homogeneous
+and Comparable otherwise we will get ClassCastException.
+5. If we are defining our own sorting order by Comparator then keys can be
+heterogeneous and non Comparable.
+6. There are no restrictions on values they can be heterogeneous and non
+Comparable.
+7. For the empty TreeM ap as first entry null key is allowed but after inserting that
+entry if we are trying to insert any other entry we will get NullPointerException.
+8. For the non empty TreeM ap if we are trying to insert an entry with null key we will
+get NullPointerException.
+9. There are no restrictions for null values.
+
+SYNTEXT-
+public static void main(String[] args)
+  {
+    TreeMap t=new TreeMap(new MyComparator());
+    t.put("XXX",10);
+    t.put("AAA",20);
+    t.put("ZZZ",30);
+    t.put("LLL",40);
+    System.out.println(t);//{ZZZ=30, XXX=10, LLL=40,
+AAA=20}
+  }
+  NOTE: Null value not even accepted at once too.
+
+---------
+Cursors
+---------
+If we want to get objects one by one from the collection then we should go for
+cursor.

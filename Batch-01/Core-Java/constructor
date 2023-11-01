@@ -1,0 +1,49 @@
+---
+Introduction
+---
+The main objective of constructor is to perform initialization of an object.
+
+---
+  Rules to write constructors:
+---
+1. Name of the constructor and name of the class must be same.
+2. Return type concept is not applicable for constructor even void also by mistake if
+we are declaring the return type for the constructor we won't get any compile
+time error and runtime error compiler simply treats it as a method.
+3.It is legal (but stupid) to have a method whose name is exactly same as class
+name.
+4.The only applicable modifiers for the constructors are public, default, private,
+protected.
+5. If we are using any other modifier we will get compile time error.
+
+
+Class mein Constructor bhi hote hain object/Instance aur method ki alawa.
+
+-------------------------------------
+Rules for creating Java constructor
+-------------------------------------
+
+1)Constructor name must be the same as its class name
+2)A Constructor must have no explicit return type
+3)A Java constructor cannot be abstract, static, final, and synchronized
+
+Rule: If there is no constructor in a class, compiler automatically creates a
+default constructor.
+ USE: A constructor is used to initialize the state of an object.
+---------------------------
+Types of Java constructors
+---------------------------
+
+There are two types of constructors in Java:
+
+1)Parameterized constructor : A constructor which has a specific number
+of parameters is called a parameterized constructor
+2)Default constructor(no-arg constructor): A constructor is called "Default Constructor"
+when it doesn't have any parameter.
+
+SYNTEXT-
+
+public <classname>(){
+  }
+ Basically jab ham object banata new se tab uske age jo hm class ka name likhte hn vahi
+ CONSTRUCTOR hain. for eg - product obj = new product(); isme product constructor hain.
