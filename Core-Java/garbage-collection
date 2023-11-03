@@ -1,0 +1,6 @@
+---
+Garbage collector
+---
+
+When ever the program runs with low memory the JVM will execute Garbage Collector
+to provide free memory. So that the main Thread can continue it's execution.

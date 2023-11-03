@@ -1,0 +1,18 @@
+======================
+Interface in Java
+======================
+
+1)There can be only abstract method in the JAVA interface,not method body.
+2)It is use to achieve abstraction and multiple inheritance in JAVA.
+3)In other words,you can say that interface can  have abstract method and variables.
+4)It cannot have a method body.
+5)It can not be instantiated just like the abstract class.
+
+Syntax:
+
+    interface <interface_name>{
+
+        // declare constant fields
+        // declare methods that abstract
+        // by default.
+}

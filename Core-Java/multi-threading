@@ -1,0 +1,216 @@
+---
+Introduction
+---
+
+Multitasking: Executing several tasks simultaneously is the concept of multitasking.
+
+There are two types of multitasking's.
+1. Process based multitasking.
+2. Thread based multitasking.
+
+---
+The ways to define instantiate and start a new Thread:
+---
+1. By extending Thread class.
+2. By implementing Runnable interface.
+
+example:
+
+class ThreadDemo
+{
+public static void main(String[] args)
+{
+MyThread t=new MyThread();//Instantiation of a Thread
+t.start();//starting of a Thread
+for(int i=0;i<5;i++)
+{
+System.out.println("main thread");
+}
+}
+}
+
+Case 1: Thread Scheduler:
+∙ If multiple Threads are waiting to execute then which Thread will execute 1st
+is  decided by "Thread Scheduler" which is part of JVM.
+
+
+Note:For every Thread the required mandatory activities like registering the
+Thread with  Thread Scheduler will takes care by Thread class start() method
+and programmer is  responsible just to define the job of the Thread inside run()
+method.
+
+
+If we are not overriding run() method then Thread class run() method will be executed
+which has empty implementation and hence we won't get any output.
+
+
+----
+Life cycle of the Thread:
+---
+∙ Once we created a Thread object then the Thread is said to be in new state or  born state.
+∙ Once we call start() method then the Thread will be entered into Ready or  Runnable state.
+∙ If Thread Scheduler allocates CPU then the Thread will be entered into running  state.
+∙ Once run() method completes then the Thread will entered into dead state.
+
+
+We can prevent(stop) a Thread execution by using the following methods.
+1. yield();
+2. join();
+3. sleep();
+
+
+yield():
+
+1. yield() method causes "to pause current executing Thread for giving the chance
+of remaining waiting Threads of same priority".
+
+Example:
+class MyThread extends Thread
+{
+public void run()
+{
+for(int i=0;i<5;i++)
+{
+Thread.yield();
+System.out.println("child thread");
+}
+}
+}
+class ThreadYieldDemo
+{
+public static void main(String[] args)
+{
+MyThread t=new MyThread();
+t.start();
+for(int i=0;i<5;i++)
+{
+System.out.println("main thread");
+}
+}
+}
+
+
+Join():
+
+If a Thread wants to wait until completing some other Thread then we should go for
+join() method.
+Example: If a Thread t1 executes t2.join() then t1 should go for waiting state until
+completing t2.
+
+Note:
+Every join() method throws InterruptedException, which is checked exception
+hence  compulsory we should handle either by try catch or by throws keyword.
+Otherwise we will get compiletime error.
+
+
+Note :
+If main thread calls join() on child thread object and child thread called join()
+on main  thread object then both threads will wait for each other forever and the
+program will be  hanged(like deadlock if a Thread class join() method on the same
+thread itself then the  program will be hanged ).
+
+Sleep() method:
+If a Thread don't want to perform any operation for a particular amount of time
+then  we should go for sleep() method.
+
+---
+Inter Thread communication (wait(),notify(), notifyAll()):
+---
+∙ Two Threads can communicate with each other by using wait(), notify() and
+ notifyAll() methods.
+
+∙The Thread which is required updation it has to call wait() method on the
+required object then immediately the Thread will entered into waiting state.
+The Thread which is performing updation of object, it is responsible to give
+notification by calling notify() method.
+
+After getting notification the waiting Thread will get those updations.
+
+ wait(), notify() and notifyAll() methods are available in Object class but not
+in  Thread class because Thread can call these methods on any common object.
+∙ To call wait(), notify() and notifyAll() methods compulsory the current Thread
+should be owner of that object
+i.e., current Thread should has lock of that object
+i.e., current Thread should be in synchronized area.
+
+Example 1:
+class ThreadA
+{
+public static void main(String[] args)throws InterruptedException {
+ThreadB b=new ThreadB();
+b.start();
+synchronized(b)
+{
+System.out.println("main Thread calling wait() method");//step-1 b.wait();
+System.out.println("main Thread got notification call");//step-4 System.out.println(b.total);
+}
+}
+}
+class ThreadB extends Thread
+{
+int total=0;
+public void run()
+{
+synchronized(this)
+{
+System.out.println("child thread starts calcuation");//step-2 for(int i=0;i<=100;i++)
+{
+total=total+i;
+}
+System.out.println("child thread giving notification call");//step 3
+this.notify();
+}
+}
+}
+Output:
+main Thread calling wait() method
+child thread starts calculation
+child thread giving notification call
+main Thread got notification call
+5050
+
+---
+Producer consumer problem:
+---
+
+∙ Producer(producer Thread) will produce the items to the queue and  consumer
+(consumer thread) will consume the items from the queue. If the queue is empty
+then consumer has to call wait() method on the queue object then it will entered
+into waiting state.
+∙ After producing the items producer Thread call notify() method on the queue to
+give notification so that consumer Thread will get that notification and consume
+items.
+
+Note: On which object we are calling wait(), notify() and notifyAll() methods
+that  corresponding object lock we have to get but not other object locks.
+
+---
+Dead lock:
+---
+∙ If 2 Threads are waiting for each other forever(without end) such type of
+situation(infinite waiting) is called dead lock.
+
+---
+Daemon Threads:
+---
+The Threads which are executing in the background are called daemon Threads.
+The main objective of daemon Threads is to provide support for non-daemon Threads
+like main Thread.
+
+∙ We can check whether the Thread is daemon or not by using isDaemon() method
+of Thread class.
+public final boolean isDaemon();
+
+∙ Main Thread is always non daemon and for the remaining Threads daemon nature
+will be inheriting from parent to child that is if the parent is daemon child
+is also daemon and if the parent is non daemon then child is also non daemon.
+
+∙ Whenever the last non daemon Thread terminates automatically all daemon
+Threads will be terminated.
+
+---
+  Starvation
+---
+∙ A long waiting of a Thread which ends at certain point is called starvation.
+∙ A low priority Thread has to wait until completing all high priority Threads.
+∙ This long waiting of Thread which ends at certain point is called starvation.

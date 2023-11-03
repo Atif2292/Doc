@@ -1,0 +1,6 @@
+
+OBJECT,STRING-(Imutable) - object,string ek Imutable class hain.
+Imutable - Imutable aise classes hoti hain jinke class/object kabhi change nahi
+hoti hain.
+(Iska mtlb hain ke agr obj banjaye tu ham uske state change na kr sake, for eg obj1
+hain tu ham usse obj2 na kr paye aur agr obj2 kr tu ussse ek naya obj assign ho jaye.)

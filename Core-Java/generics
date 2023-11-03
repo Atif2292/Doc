@@ -1,0 +1,10 @@
+=========
+GENERICS
+=========
+
+public ResponseEntity<String> openaccount() {
+  //body
+}
+class Test<T extends RunnableandNumber> {} (invalid)
+because Runnable IS A CLASS.
+Note: we have to take first class then interface.

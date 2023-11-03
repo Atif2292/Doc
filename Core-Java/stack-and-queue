@@ -1,0 +1,10 @@
+
+
+Stack is LIFO(Last In Fast Out):
+In Stack when input a value through push method it is added in the Datastructure
+of array and we can remove it through a method of pop. In this the first/last stack
+trace fill first/last and last/first stack trace remove last/first
+
+Queue is FIFO (First In First Out) :In Queue when input a value through push
+method it is added in the Datastructure of array and we can remove it through a
+method of pop. isme pehle jo bhara jayga wahi sbse pehle niklega stack trace se.
